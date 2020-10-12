@@ -23,34 +23,35 @@ err() {
 oc version
 oc new-project istio-system
 
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/opgroup.yaml
+oc delete -f ./mesh-manifests/opgroup.yaml --ignore-not-found
 
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/subjaeger.yaml
+oc delete -f ./mesh-manifests/subjaeger.yaml --ignore-not-found
 
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/subkiali.yaml
+oc delete -f ./mesh-manifests/subkiali.yaml --ignore-not-found
 
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/submesh.yaml
-
-
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/meshcontrolplane.yaml
-
-oc delete -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/meshmemberroll.yaml
+oc delete -f ./mesh-manifests/submesh.yaml --ignore-not-found
 
 
+oc delete -f ./mesh-manifests/meshcontrolplane.yaml --ignore-not-found
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/opgroup.yaml
+oc delete -f ./mesh-manifests/meshmemberroll.yaml --ignore-not-found
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/subjaeger.yaml
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/subkiali.yaml
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/submesh.yaml
+oc apply -f ./mesh-manifests/opgroup.yaml
 
+oc apply -f ./mesh-manifests/subjaeger.yaml
+
+oc apply -f ./mesh-manifests/subkiali.yaml
+
+oc apply -f ./mesh-manifests/submesh.yaml
+
+echo "Waiting a bit..."
 sleep 30
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/meshcontrolplane.yaml
+oc apply -f ./mesh-manifests/meshcontrolplane.yaml
 
-oc apply -f https://raw.githubusercontent.com/marcredhat/crcdemos/master/keptn/meshmemberroll.yaml
+oc apply -f ./mesh-manifests/meshmemberroll.yaml 
 
 
 #https://access.redhat.com/documentation/en-us/openshift_container_platform/4.5/html/operators/olm-adding-operators-to-a-cluster
